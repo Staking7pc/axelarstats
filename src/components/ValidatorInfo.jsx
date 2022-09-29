@@ -8,7 +8,7 @@ function ValidatorInfo() {
         { key: "total_stake", label: "TOTAL STAKE" },
         { key: "commission", label: "COMMISSION" },
         { key: "one_day_apy", label: "APY-1DAY" },
-        { key: "seven_day_apy", label: "APY-7DAYS" },
+        { key: "seven_day_apy", label: "APY-2DAYS" },
         { key: "thirty_day_apy", label: "APY-30DAYS" },
         { key: "as_of_time", label: "LAST UPDATED" },
         { key: "delegate_link", label: "DELEGATE" }
@@ -47,9 +47,9 @@ function ValidatorInfo() {
                                 <td>{parseInt(val.total_stake).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                                 <td>{(parseFloat(val.commission) * 100).toFixed(2)}%</td>
                                 <td>{val.one_day_apy}%</td>
-                                <td>{val.seven_day_apy}</td>
+                                <td>{val.seven_day_apy}%</td>
                                 <td>{val.thirty_day_apy}</td>
-                                <td>{val.as_of_time}</td>
+                                <td>{val.as_of_time} GMT</td>
                                 <td><a href=''>Delegate</a></td>
                             </tr>
                         )
