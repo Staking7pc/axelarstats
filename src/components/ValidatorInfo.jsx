@@ -10,16 +10,18 @@ function ValidatorInfo() {
         { key: "one_day_apy", label: "APY-1DAY" },
         { key: "seven_day_apy", label: "APY-2DAYS" },
         { key: "thirty_day_apy", label: "APY-30DAYS" },
-        { key: "as_of_time", label: "LAST UPDATED" },
+        { key: "", label: "CHAINS SUPPORTED" },
         { key: "delegate_link", label: "DELEGATE" }
 
     ];
     const [validatorDetails, setValidatorDetails] = useState([]);
+    const [lastUpdated, setLastUpdated] = useState([]);
 
     function setEventDetails() {
         axios.get("https://collatorstats.brightlystake.com/query/axelar/getValidatorDetails")
             .then((res) => {
                 setValidatorDetails(res.data.data)
+                setLastUpdated(res.data.data[0].as_of_time)
                 console.log(res.data.data)
             });
     }
@@ -43,13 +45,13 @@ function ValidatorInfo() {
                         return (
                             <tr key={val.validator_name}>
                                 <td>{val.validator_name}</td>
-                                <td className={ val.active_status === "INACTIVE" ? "InActive" : "Active" }> {val.active_status}</td>
+                                <td className={val.active_status === "INACTIVE" ? "InActive" : "Active"}> {val.active_status}</td>
                                 <td>{parseInt(val.total_stake).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                                 <td>{(parseFloat(val.commission) * 100).toFixed(2)}%</td>
                                 <td>{val.one_day_apy}%</td>
                                 <td>{val.seven_day_apy}%</td>
                                 <td>{val.thirty_day_apy}</td>
-                                <td>{val.as_of_time} GMT</td>
+                                <td>{5}</td>
                                 <td><a href=''>Delegate</a></td>
                             </tr>
                         )

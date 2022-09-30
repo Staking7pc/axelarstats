@@ -1,11 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Header.css'
-export default class Header extends Component {
-  render() {
-    return (
-      <div className='top-nav'>
-            <h1>Axelar Validator Stats</h1>
-      </div>
-    )
-  }
+
+function Header() {
+  return (
+    <div className='top-nav'>
+    <h1>Axelar Validator Stats</h1>
+    <div>
+      <h4>Last updated on</h4>
+    </div>
+  </div>
+  )
 }
+
+export default Header
