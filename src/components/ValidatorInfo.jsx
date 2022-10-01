@@ -20,17 +20,16 @@ function ValidatorInfo() {
     const [lastUpdated, setLastUpdated] = useState([]);
     const [order, setOrder] = useState('ASC');
     const sorting = (col) => {
-        console.log(col)
         if (order === 'ASC') {
             const sorted = [...validatorDetails].sort((a, b) =>
-                (col=='total_stake')? Number(a[col]) - Number(b[col]) : (a[col] > b[col]) ? 1 : -1
+                (col=='total_stake'| 'commission' | 'one_day_apy' | 'seven_day_apy' |'thirty_day_apy')? Number(a[col]) - Number(b[col]) : (a[col] > b[col]) ? 1 : -1
             )
             setValidatorDetails(sorted)
             setOrder('DSC')
         }
         if (order === 'DSC') {
             const sorted = [...validatorDetails].sort((a, b) =>
-            (col=='total_stake')? Number(b[col]) - Number(a[col]) : (b[col] > a[col]) ? 1 : -1
+            (col=='total_stake' | 'commission' | 'one_day_apy' | 'seven_day_apy' |'thirty_day_apy')? Number(b[col]) - Number(a[col]) : (b[col] > a[col]) ? 1 : -1
             )
             setValidatorDetails(sorted)
             setOrder('ASC')
