@@ -18,17 +18,26 @@ function ValidatorInfo() {
     ];
     const [validatorDetails, setValidatorDetails] = useState([]);
     const [lastUpdated, setLastUpdated] = useState([]);
-    const [sortKey, setSortKey]=useState([]);
-    const [sortOrder, setSortOrder]=useState([]);
-    
-    const sortedData  = useCallback(()=>{
+    const [order, setOrder] = useState('ASC');
+    const sorting = (col) => {
+        console.log(col)
+        if (order === 'ASC') {
+            const sorted = [...validatorDetails].sort((a, b) =>
+                (col=='total_stake')? Number(a[col]) - Number(b[col]) : (a[col] > b[col]) ? 1 : -1
+            )
+            setValidatorDetails(sorted)
+            setOrder('DSC')
+        }
+        if (order === 'DSC') {
+            const sorted = [...validatorDetails].sort((a, b) =>
+            (col=='total_stake')? Number(b[col]) - Number(a[col]) : (b[col] > a[col]) ? 1 : -1
+            )
+            setValidatorDetails(sorted)
+            setOrder('ASC')
+        }
 
-    })
-
-    function sortData(params) {
-        
     }
-    
+
     function setEventDetails() {
         axios.get("https://collatorstats.brightlystake.com/query/axelar/getValidatorDetails")
             .then((res) => {
@@ -47,7 +56,7 @@ function ValidatorInfo() {
             <thead>
                 <tr className='header'>
                     {headers.map((row) => {
-                        return <td key={row.key}>{row.label}</td>
+                        return <td onClick={() => sorting(row.key)} key={row.key}>{row.label}</td>
                     })}
                 </tr>
             </thead>
