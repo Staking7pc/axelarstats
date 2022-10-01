@@ -63,7 +63,7 @@ function ValidatorInfo() {
                 {
                     validatorDetails.map((val) => {
                         return (
-                            <tr key={val.validator_name}>
+                            <tr className={val.validator_name === "BRIGHTLYSTAKE" ? "decorate" : "NO"} key={val.validator_name}>
                                 <td className='validator'>{val.validator_name}</td>
                                 <td className={val.active_status === "INACTIVE" ? "InActive" : "Active"}> {val.active_status}</td>
                                 <td>{parseInt(val.total_stake).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
