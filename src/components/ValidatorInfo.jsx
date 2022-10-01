@@ -22,14 +22,14 @@ function ValidatorInfo() {
     const sorting = (col) => {
         if (order === 'ASC') {
             const sorted = [...validatorDetails].sort((a, b) =>
-                (col=='total_stake'| 'commission' | 'one_day_apy' | 'seven_day_apy' |'thirty_day_apy')? Number(a[col]) - Number(b[col]) : (a[col] > b[col]) ? 1 : -1
+                (col == 'total_stake' | 'commission' | 'one_day_apy' | 'seven_day_apy' | 'thirty_day_apy') ? Number(a[col]) - Number(b[col]) : (a[col] > b[col]) ? 1 : -1
             )
             setValidatorDetails(sorted)
             setOrder('DSC')
         }
         if (order === 'DSC') {
             const sorted = [...validatorDetails].sort((a, b) =>
-            (col=='total_stake' | 'commission' | 'one_day_apy' | 'seven_day_apy' |'thirty_day_apy')? Number(b[col]) - Number(a[col]) : (b[col] > a[col]) ? 1 : -1
+                (col == 'total_stake' | 'commission' | 'one_day_apy' | 'seven_day_apy' | 'thirty_day_apy') ? Number(b[col]) - Number(a[col]) : (b[col] > a[col]) ? 1 : -1
             )
             setValidatorDetails(sorted)
             setOrder('ASC')
@@ -64,7 +64,7 @@ function ValidatorInfo() {
                     validatorDetails.map((val) => {
                         return (
                             <tr key={val.validator_name}>
-                                <td>{val.validator_name}</td>
+                                <td className='validator'>{val.validator_name}</td>
                                 <td className={val.active_status === "INACTIVE" ? "InActive" : "Active"}> {val.active_status}</td>
                                 <td>{parseInt(val.total_stake).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                                 <td>{(parseFloat(val.commission) * 100).toFixed(2)}%</td>
