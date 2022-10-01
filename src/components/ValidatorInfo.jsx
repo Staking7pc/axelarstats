@@ -11,8 +11,8 @@ function ValidatorInfo() {
         { key: "commission", label: "COMMISSION" },
         { key: "one_day_apy", label: "APY-1DAY" },
         { key: "seven_day_apy", label: "APY-5DAYS" },
-        { key: "thirty_day_apy", label: "APY-30DAYS" },
-        { key: "", label: "CHAINS SUPPORTED" },
+        // { key: "thirty_day_apy", label: "APY-30DAYS" },
+        // { key: "", label: "CHAINS SUPPORTED" },
         { key: "delegate_link", label: "DELEGATE" }
 
     ];
@@ -71,8 +71,8 @@ function ValidatorInfo() {
                                 <td>{(parseFloat(val.commission) * 100).toFixed(2)}%</td>
                                 <td>{parseFloat(val.one_day_apy).toFixed(1)}%</td>
                                 <td>{parseFloat(val.seven_day_apy).toFixed(1)}%</td>
-                                <td>{parseFloat(val.thirty_day_apy).toFixed(1)}</td>
-                                <td>{ }</td>
+                                {/* <td>{parseFloat(val.thirty_day_apy).toFixed(1)}</td>
+                                <td>{ }</td> */}
                                 <td><a href={url1}>Delegate</a></td>
                             </tr>
                         )
