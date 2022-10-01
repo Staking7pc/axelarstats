@@ -55,7 +55,7 @@ export default function Cards() {
                     </div>
                 </div>
                 <div class="heading">
-                    <h4>Validator Stats</h4>
+                    <h4>Axelar Validator Stats</h4>
                     <p>Click on each of the validator to get the historic details</p>
                 </div>
             </div>

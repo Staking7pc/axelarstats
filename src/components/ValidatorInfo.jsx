@@ -62,17 +62,18 @@ function ValidatorInfo() {
             <tbody>
                 {
                     validatorDetails.map((val) => {
+                        var url1 = 'https://wallet.keplr.app/chains/axelar?modal=validator&chain=axelar-dojo-1&validator_address='+val.valoper_address
                         return (
                             <tr className={val.validator_name === "BRIGHTLYSTAKE" ? "decorate" : "NO"} key={val.validator_name}>
                                 <td className='validator'>{val.validator_name}</td>
                                 <td className={val.active_status === "INACTIVE" ? "InActive" : "Active"}> {val.active_status}</td>
                                 <td>{parseInt(val.total_stake).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                                 <td>{(parseFloat(val.commission) * 100).toFixed(2)}%</td>
-                                <td>{val.one_day_apy}%</td>
-                                <td>{val.seven_day_apy}%</td>
-                                <td>{val.thirty_day_apy}</td>
+                                <td>{parseFloat(val.one_day_apy).toFixed(1)}%</td>
+                                <td>{parseFloat(val.seven_day_apy).toFixed(1)}%</td>
+                                <td>{parseFloat(val.thirty_day_apy).toFixed(1)}</td>
                                 <td>{ }</td>
-                                <td><a href=''>Delegate</a></td>
+                                <td><a href={url1}>Delegate</a></td>
                             </tr>
                         )
                     })
