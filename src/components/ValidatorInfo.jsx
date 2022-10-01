@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import axios from 'axios';
 import './ValidatorInfo.css'
+
 function ValidatorInfo() {
+
     const headers = [
         { key: "validator_name", label: "VALIDATOR NAME" },
         { key: "active_status", label: "STATUS" },
         { key: "total_stake", label: "TOTAL STAKE" },
         { key: "commission", label: "COMMISSION" },
         { key: "one_day_apy", label: "APY-1DAY" },
-        { key: "seven_day_apy", label: "APY-2DAYS" },
+        { key: "seven_day_apy", label: "APY-5DAYS" },
         { key: "thirty_day_apy", label: "APY-30DAYS" },
         { key: "", label: "CHAINS SUPPORTED" },
         { key: "delegate_link", label: "DELEGATE" }
@@ -16,7 +18,17 @@ function ValidatorInfo() {
     ];
     const [validatorDetails, setValidatorDetails] = useState([]);
     const [lastUpdated, setLastUpdated] = useState([]);
+    const [sortKey, setSortKey]=useState([]);
+    const [sortOrder, setSortOrder]=useState([]);
+    
+    const sortedData  = useCallback(()=>{
 
+    })
+
+    function sortData(params) {
+        
+    }
+    
     function setEventDetails() {
         axios.get("https://collatorstats.brightlystake.com/query/axelar/getValidatorDetails")
             .then((res) => {
@@ -51,7 +63,7 @@ function ValidatorInfo() {
                                 <td>{val.one_day_apy}%</td>
                                 <td>{val.seven_day_apy}%</td>
                                 <td>{val.thirty_day_apy}</td>
-                                <td>{5}</td>
+                                <td>{ }</td>
                                 <td><a href=''>Delegate</a></td>
                             </tr>
                         )
