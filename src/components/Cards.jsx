@@ -6,7 +6,7 @@ export default function Cards() {
         <body>
             <div class="container">
                 <div class="heading">
-                    <h4>Factors affecting returns in Staking</h4>
+                    <h4>Factors affecting APY in Staking</h4>
                 </div>
                 <div class="row">
                     <div class="card">
@@ -55,8 +55,8 @@ export default function Cards() {
                     </div>
                 </div>
                 <div class="heading">
-                    <h4>Axelar Validator Stats</h4>
-                    <p>Click on each of the validator to get the historic details</p>
+                    <h6>Click on each of the validator to get the historic details</h6>
+                    <p>APY is updated daily, rest of the details hourly</p>
                 </div>
             </div>
         </body>
