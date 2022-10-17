@@ -11,7 +11,7 @@
   border-radius: 5px 5px 0 0;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  margin-left: 20%;
+  margin-left: 15%;
 }
 .InActive {
   color: crimson;
@@ -32,6 +32,9 @@
 
 #validators tbody tr {
   border-bottom: 1px solid #dddddd;
+}
+.green{
+  color: #965821;
 }
 
 #validators tbody tr:nth-of-type(even) {

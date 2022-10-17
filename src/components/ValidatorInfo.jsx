@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import axios from 'axios';
 import './ValidatorInfo.css'
 
-function ValidatorInfo() {
+function ValidatorInfo(props) {
 
     const headers = [
         { key: "validator_name", label: "VALIDATOR NAME" },
@@ -12,7 +12,7 @@ function ValidatorInfo() {
         { key: "one_day_apy", label: "APY-1DAY" },
         { key: "seven_day_apy", label: "APY-5DAYS" },
         // { key: "thirty_day_apy", label: "APY-30DAYS" },
-        // { key: "", label: "CHAINS SUPPORTED" },
+        { key: "", label: "EST. RETURNS / DAY" },
         { key: "delegate_link", label: "DELEGATE" }
 
     ];
@@ -62,6 +62,7 @@ function ValidatorInfo() {
             <tbody>
                 {
                     validatorDetails.map((val) => {
+                        console.log(props.value)
                         var url1 = 'https://wallet.keplr.app/chains/axelar?modal=validator&chain=axelar-dojo-1&validator_address='+val.valoper_address
                         return (
                             <tr className={val.validator_name === "BRIGHTLYSTAKE" ? "decorate" : "NO"} key={val.validator_name}>
@@ -71,6 +72,7 @@ function ValidatorInfo() {
                                 <td>{(parseFloat(val.commission) * 100).toFixed(2)}%</td>
                                 <td>{parseFloat(val.one_day_apy).toFixed(1)}%</td>
                                 <td>{parseFloat(val.seven_day_apy).toFixed(1)}%</td>
+                                <td className='green'>{ ((parseFloat(val.one_day_apy).toFixed(1)/36500)*props.value).toFixed(3)} AXL</td>
                                 {/* <td>{parseFloat(val.thirty_day_apy).toFixed(1)}</td>
                                 <td>{ }</td> */}
                                 <td><a href={url1}>Delegate</a></td>

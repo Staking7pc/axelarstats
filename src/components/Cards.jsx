@@ -54,10 +54,6 @@ export default function Cards() {
                         </div>
                     </div>
                 </div>
-                <div class="heading">
-                    <h6>Click on each of the validator to get the historic details</h6>
-                    <p>APY is updated daily, rest of the details hourly</p>
-                </div>
             </div>
         </body>
     )
