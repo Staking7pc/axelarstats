@@ -5,31 +5,35 @@ import './ValidatorInfo.css'
 function ValidatorInfo(props) {
 
     const headers = [
-        { key: "validator_name", label: "VALIDATOR NAME" },
+        { key: "name", label: "VALIDATOR NAME" },
         { key: "active_status", label: "STATUS" },
-        { key: "total_stake", label: "TOTAL STAKE" },
+        { key: "bonded_tokens", label: "TOTAL STAKE" },
         { key: "commission", label: "COMMISSION" },
         { key: "one_day_apy", label: "APY-1DAY" },
-        { key: "seven_day_apy", label: "APY-5DAYS" },
+        { key: "seven_day_apy", label: "APY-7DAYS" },
         // { key: "thirty_day_apy", label: "APY-30DAYS" },
-        { key: "", label: "EST. RETURNS / DAY" },
+        { key: "", label: "Est. RETURNS / DAY" },
         { key: "delegate_link", label: "DELEGATE" }
 
     ];
     const [validatorDetails, setValidatorDetails] = useState([]);
-    const [lastUpdated, setLastUpdated] = useState([]);
     const [order, setOrder] = useState('ASC');
+    const [APY, setAPY] = useState([]);
+    const [one_day, setOne_day] = useState([]);
+    const [seven_day, setSeven_day] = useState([]);
+
+
     const sorting = (col) => {
         if (order === 'ASC') {
             const sorted = [...validatorDetails].sort((a, b) =>
-                (col == 'total_stake' | 'commission' | 'one_day_apy' | 'seven_day_apy' | 'thirty_day_apy') ? Number(a[col]) - Number(b[col]) : (a[col] > b[col]) ? 1 : -1
+                (col == 'bonded_tokens' | 'commission') ? Number(a[col]) - Number(b[col]) : (a[col] > b[col]) ? 1 : -1
             )
             setValidatorDetails(sorted)
             setOrder('DSC')
         }
         if (order === 'DSC') {
             const sorted = [...validatorDetails].sort((a, b) =>
-                (col == 'total_stake' | 'commission' | 'one_day_apy' | 'seven_day_apy' | 'thirty_day_apy') ? Number(b[col]) - Number(a[col]) : (b[col] > a[col]) ? 1 : -1
+                (col == 'bonded_tokens' | 'commission' | 'one_day_apy' | 'seven_day_apy' | 'thirty_day_apy') ? Number(b[col]) - Number(a[col]) : (b[col] > a[col]) ? 1 : -1
             )
             setValidatorDetails(sorted)
             setOrder('ASC')
@@ -38,15 +42,23 @@ function ValidatorInfo(props) {
     }
 
     function setEventDetails() {
-        axios.get("https://collatorstats.brightlystake.com/query/axelar/getValidatorDetails")
+        axios.get("https://collatorstats.brightlystake.com/query/axelar/getValidators")
             .then((res) => {
                 setValidatorDetails(res.data.data)
-                setLastUpdated(res.data.data[0].as_of_time)
-                console.log(res.data.data)
+                //console.log(res.data.data)
             });
     }
+    function setApyValues() {
+        axios.get("https://collatorstats.brightlystake.com/query/axelar/getValidatorsApy")
+            .then((res1) => {
+                setAPY(res1.data.data)
+                console.log(res1.data.data)
+            });
+    }
+
     useEffect(() => {
         setEventDetails();
+        setApyValues();
     }, [])
 
 
@@ -62,17 +74,23 @@ function ValidatorInfo(props) {
             <tbody>
                 {
                     validatorDetails.map((val) => {
-                        console.log(props.value)
-                        var url1 = 'https://wallet.keplr.app/chains/axelar?modal=validator&chain=axelar-dojo-1&validator_address='+val.valoper_address
+                        var url1 = 'https://wallet.keplr.app/chains/axelar?modal=validator&chain=axelar-dojo-1&validator_address=' + val.valoper
+                        var one_day = 0, seven_day = 0
+                        APY.forEach((e) => {
+                            if (e.valoper == val.valoper) {
+                                one_day = e.one_day
+                                seven_day = e.seven_day
+                            }
+                        })
                         return (
-                            <tr className={val.validator_name === "BRIGHTLYSTAKE" ? "decorate" : "NO"} key={val.validator_name}>
-                                <td className='validator'>{val.validator_name}</td>
+                            <tr className={val.name === "BRIGHTLYSTAKE" ? "decorate" : "NO"} key={val.name}>
+                                <td className='validator'>{String(val.name).toUpperCase()}</td>
                                 <td className={val.active_status === "INACTIVE" ? "InActive" : "Active"}> {val.active_status}</td>
-                                <td>{parseInt(val.total_stake).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                                <td>{parseInt(val.bonded_tokens).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                                 <td>{(parseFloat(val.commission) * 100).toFixed(2)}%</td>
-                                <td>{parseFloat(val.one_day_apy).toFixed(1)}%</td>
-                                <td>{parseFloat(val.seven_day_apy).toFixed(1)}%</td>
-                                <td className='green'>{ ((parseFloat(val.one_day_apy).toFixed(1)/36500)*props.value).toFixed(3)} AXL</td>
+                                <td>{parseFloat(one_day).toFixed(1)}%</td>
+                                <td>{parseFloat(seven_day).toFixed(1)}%</td>
+                                <td className='green'>{((parseFloat(seven_day).toFixed(1) / 36500) * props.value).toFixed(3)} AXL</td>
                                 {/* <td>{parseFloat(val.thirty_day_apy).toFixed(1)}</td>
                                 <td>{ }</td> */}
                                 <td><a href={url1}>Delegate</a></td>

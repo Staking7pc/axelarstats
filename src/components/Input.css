@@ -21,6 +21,9 @@
     input[type=text], select {
       width: 50%;
     }
+    button[type=submit] {
+      width: 50%;
+    }
 
   }
 
