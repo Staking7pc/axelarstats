@@ -61,14 +61,6 @@ export default function Boxes() {
                     </div>
                     <div class="box">
                         <div class="box-header">
-                            <h3>Inflation</h3>
-                        </div>
-                        <div class="box-body">
-                            <h3>{getInflation.inflation}%</h3>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="box-header">
                             <h3>Unstake duration</h3>
                         </div>
                         <div class="box-body">
@@ -113,6 +105,14 @@ export default function Boxes() {
                         </div>
                         <div class="box-body">
                             <h3>Every block</h3>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-header">
+                            <h3>Inflation</h3>
+                        </div>
+                        <div class="box-body">
+                            <h3>{getInflation.inflation}%</h3>
                         </div>
                     </div>
                     <div class="box">
