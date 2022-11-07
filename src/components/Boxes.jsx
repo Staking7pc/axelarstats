@@ -125,7 +125,7 @@ export default function Boxes() {
                     </div>
                     <div class="box">
                         <div class="box-header">
-                            <h3>External chain inflation</h3>
+                            <h3>External chain Inflation</h3>
                         </div>
                         <div class="box-body">
                             <h3>{getInflation.External}%</h3>
@@ -137,6 +137,14 @@ export default function Boxes() {
                         </div>
                         <div class="box-body">
                             <h3>{getInflation.Base}%</h3>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-header">
+                            <h3>Multi party Inflation</h3>
+                        </div>
+                        <div class="box-body">
+                            <h3>{getInflation.multisign}% of Base</h3>
                         </div>
                     </div>
                     <div class="box">
