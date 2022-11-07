@@ -26,7 +26,7 @@ export default function Cards() {
                         </div>
                         <div class="card-body">
                             <p>
-                                Each external chain gets 1% inflation rewards currently. So validator with maximum chains will get max returns
+                                Each external chain gets 0.75% inflation rewards currently. So validator with maximum chains will get max returns
                             </p>
                             <a target="_blank" rel="noopener noreferrer" href="https://medium.com/@staking7pc/how-external-chains-affect-your-rewards-in-axelar-b683f96b492e" class="btn">Read more</a>
                         </div>
