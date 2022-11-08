@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import axios from 'axios';
 import './ValidatorInfo.css'
 
@@ -19,21 +19,19 @@ function ValidatorInfo(props) {
     const [validatorDetails, setValidatorDetails] = useState([]);
     const [order, setOrder] = useState('ASC');
     const [APY, setAPY] = useState([]);
-    const [one_day, setOne_day] = useState([]);
-    const [seven_day, setSeven_day] = useState([]);
 
 
     const sorting = (col) => {
         if (order === 'ASC') {
             const sorted = [...validatorDetails].sort((a, b) =>
-                (col == 'bonded_tokens' | 'commission') ? Number(a[col]) - Number(b[col]) : (a[col] > b[col]) ? 1 : -1
+                (col === 'bonded_tokens' | 'commission') ? Number(a[col]) - Number(b[col]) : (a[col] > b[col]) ? 1 : -1
             )
             setValidatorDetails(sorted)
             setOrder('DSC')
         }
         if (order === 'DSC') {
             const sorted = [...validatorDetails].sort((a, b) =>
-                (col == 'bonded_tokens' | 'commission' | 'one_day_apy' | 'seven_day_apy' | 'thirty_day_apy') ? Number(b[col]) - Number(a[col]) : (b[col] > a[col]) ? 1 : -1
+                (col === 'bonded_tokens' | 'commission' | 'one_day_apy' | 'seven_day_apy' | 'thirty_day_apy') ? Number(b[col]) - Number(a[col]) : (b[col] > a[col]) ? 1 : -1
             )
             setValidatorDetails(sorted)
             setOrder('ASC')
@@ -78,7 +76,7 @@ function ValidatorInfo(props) {
                         var url2 = "https://axelar.brightlystake.com/validator/" + val.valoper;
                         var one_day = 0, seven_day = 0
                         APY.forEach((e) => {
-                            if (e.valoper == val.valoper) {
+                            if (e.valoper === val.valoper) {
                                 one_day = e.one_day
                                 seven_day = e.seven_day
                             }
@@ -90,7 +88,7 @@ function ValidatorInfo(props) {
                                 <td className={val.active_status === "INACTIVE" ? "InActive" : "Active"}> {val.active_status}</td>
                                 <td>{parseInt(val.bonded_tokens).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                                 <td>{(parseFloat(val.commission) * 100).toFixed(2)}%</td>
-                                <td><a href={url2}>{parseFloat(one_day).toFixed(1)}%</a></td>
+                                <td><a href={url2} target='_blank' rel="noreferrer" >{parseFloat(one_day).toFixed(1)}%</a></td>
                                 <td>{parseFloat(seven_day).toFixed(1)}%</td>
                                 <td className='green'>{((parseFloat(seven_day).toFixed(1) / 36500) * props.value).toFixed(3)} AXL</td>
                                 {/* <td>{parseFloat(val.thirty_day_apy).toFixed(1)}</td>
