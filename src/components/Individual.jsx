@@ -23,7 +23,7 @@ export default function Individual() {
 
   return (
     <div className="Individual">
-    <h3> Daily APY Historical Data</h3>
+    <h3 className="chart-header"> Daily APY Historical Data</h3>
     <BarChart width={600} height={400} data={consts}>
       <Tooltip />
       <XAxis dataKey='time' />
