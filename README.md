@@ -1,2 +1,3 @@
-This is a project to showcase the list of validators in axelar and their corresponding APY
-# axelarstats
+This is a dashboard to show case the status of the RPC endpoints
+# celestia
+# celestia-tools
