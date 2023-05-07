@@ -1,21 +1,28 @@
   * {
     font-family: sans-serif;
     /* Change your font family */
-  }
 
+  }
+  table#validators tbody tr.error {
+    background-color: #f3e2dd;
+  }
   #validators {
     border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
+    margin: 25px 25px;
+    font-size: 0.85em;
     min-width: 400px;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    margin-left: 10%;
   }
   .InActive {
     color: crimson;
+    font-weight: bolder;
   }
+
+  .apy {
+    text-decoration: none;
+}
 
   #validators thead tr {
     background-color: #76D7C4;
@@ -56,3 +63,7 @@
   .decorate{
     background-color: #CEE5D0;
   }
+
+  .bold{
+    font-weight: bolder;
+    }

@@ -7,10 +7,11 @@
           background-color: rgb(113, 109, 109);
         }
 
-        .logo{
+        .logo {
           width: 10px;
           height: 8px;
         }
+
         .li {
           padding-left: 3%;
           float: left;
@@ -19,8 +20,9 @@
           text-align: center;
           text-transform: inherit;
         }
-        .li-r{
-          float:right;
+
+        .li-r {
+          float: right;
         }
 
         li a {
@@ -35,6 +37,7 @@
           background-color: #76D7C4;
           font-size: larger;
         }
+
         li a:hover {
           background-color: #111;
         }
